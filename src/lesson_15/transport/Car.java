@@ -14,6 +14,34 @@ public class Car {
     final int numberSeats;                    // final
     boolean isSummerWheels;
 
+    boolean startMoving = false;
+
+    public class  Key{
+        final private boolean remoteStartEngine;
+        final private boolean keylessAccess;
+
+
+        public Key(boolean remoteStartEngine, boolean keylessAccess) {
+            this.remoteStartEngine=remoteStartEngine;
+            this.keylessAccess=keylessAccess;
+        }
+
+        public void startKey() {
+            startMoving=true;
+            System.out.println("Автомобиль "+brand+" "+model+ " начал движение. ");
+        }
+
+        public void stopKey() {
+            startMoving=false;
+            System.out.println("Автомобиль "+brand+" "+model+ " остановился. ");
+        }
+        @Override
+        public String toString() {
+            return "Данный автомобиль с опциями: "+ ((keylessAccess)? ("'Беслючевой доступ' и"):("без функции 'Бесключевой доступ' и")) + ((remoteStartEngine)?" 'Удаленный запуск двигателя'":
+            " без функции 'Удаленный запуск двигателя'");
+        }
+    } // Key class
+
 
     public Car(String brand, String model, double engineVolume, String color, int year, String country,
                String transmission, String bodyType, String registrationNumber, int numberSeats, boolean isSummerWheels) {
@@ -55,6 +83,8 @@ public class Car {
                case ("кабриолет"):
                case ("пикап"):
                case ("фургон"):
+               case ("родстер"):
+
                    this.bodyType=bodyType;
                    break;
                default:
@@ -75,19 +105,11 @@ public class Car {
 
     }
 
-    /*public Car(){
-        this.brand = "default";
-        this.model = "default";
-        this.engineVolume = 1.5;
-        this.color = "white";
-        this.year = 2000;
-        this.country = "defaulte";
-    }*/
     @Override
     public String toString() {
         String wheelsType = (isSummerWheels) ? "Летня резина" : "Зимняя резина";
-        return String.format("Brand: %1$8s model: %2$8s Volume: %3$.2f Color: %4$7s" +
-                " Year: %5$d Country: %6$7s Тип Кузова: [%8$s] Коробка передач: [%9$s] Регистрационный номер: [%10$s] Количество мест: [%11$d] [%12$s]","'"+brand+"'","'"+model+"'",
+        return String.format("Brand: [%1$s] model:[%2$s] Volume: [%3$.2f] Color: [%4$s]" +
+                " Year: %5$d Country: [%6$7s] Тип Кузова: [%7$s] Коробка передач: [%8$s] Регистрационный номер: [%9$s] Количество мест: [%10$d] [%11$s]","'"+brand+"'","'"+model+"'",
                 engineVolume, color, year,country,bodyType,transmission, registrationNumber, numberSeats, wheelsType);
     }
     ///////////////// getters  ///////////
