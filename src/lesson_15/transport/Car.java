@@ -40,6 +40,14 @@ public class Car {
             return "Данный автомобиль с опциями: "+ ((keylessAccess)? ("'Беслючевой доступ' и"):("без функции 'Бесключевой доступ' и")) + ((remoteStartEngine)?" 'Удаленный запуск двигателя'":
             " без функции 'Удаленный запуск двигателя'");
         }
+
+        public boolean isRemoteStartEngine() {
+            return remoteStartEngine;
+        }
+
+        public boolean isKeylessAccess() {
+            return keylessAccess;
+        }
     } // Key class
 
 
